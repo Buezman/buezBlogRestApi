@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +20,7 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
-    ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto){
+    ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto){
         PostDto responseBody = postService.createPost(postDto);
         return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
     }
